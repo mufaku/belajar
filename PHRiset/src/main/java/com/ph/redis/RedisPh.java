@@ -63,13 +63,29 @@ public class RedisPh {
 		System.out.println(a);
 	}
 	
-	public static void SampleGetAll(Jedis jedis,String list,int awal,int akhir){
+	public static void SampleGetAll(Jedis jedis,String list){
 		List<Map<String, String>> listMap = new ArrayList<Map<String, String>>();
-		List<String> lrange = jedis.lrange(list,awal,akhir);
-
+		List<String> lrange = jedis.lrange(list,0,-1);
+		
+		int a=1;
+		for (String string : lrange) 
+		{
+			System.out.print("Index ke"+a+" : ");
+			System.out.println(string);
+			a++;
+		}
+	}
+	
+	public static void SampleGetIndex(Jedis jedis,String list,int IndexAwal,int IndexAkhir){
+		List<Map<String, String>> listMap = new ArrayList<Map<String, String>>();
+		List<String> lrange = jedis.lrange(list,IndexAwal,IndexAkhir);
+		
+		int a=1;
 		for (String string : lrange) 
 		{
 			System.out.println(string);
+			a++;
 		}
 	}
+	
 }
